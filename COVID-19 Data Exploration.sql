@@ -115,7 +115,7 @@ ORDER BY TotalDeaths DESC
 
 -- Now, let's ignore the countries and look at the global numbers
 -- Global death rate in relate to new cases
--- (instead of using total deaths and cases we are aggregating the new death & cases
+-- (instead of using total deaths and cases we are aggregating the new death & cases)
 SELECT date, sum(new_cases) as global_cases, sum(new_deaths) as global_deaths,
        sum(cast(new_deaths as decimal))/sum(new_cases)*100 as Global_Death_Percentage
 FROM CovidDeaths
@@ -136,7 +136,7 @@ SELECT CovidDeaths.continent, CovidDeaths.date, CovidDeaths.location, SUM(new_va
 FROM CovidDeaths
 INNER JOIN CovidVaccinations
 ON coviddeaths.date = covidvaccinations.date AND coviddeaths.location = covidvaccinations.location
-WHERE CovidDeaths.Continent is not null and CovidDeaths.location = 'Israel'
+WHERE CovidDeaths.Continent is not null
 ORDER BY location, date ASC
 )
 SELECT continent, location, date, new_vaccinations, total_vaccinations, population,
